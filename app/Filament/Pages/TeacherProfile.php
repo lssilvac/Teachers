@@ -3,14 +3,10 @@
 namespace App\Filament\Pages;
 
 use Carbon\Carbon;
-use DebugBar\DebugBar;
 use Filament\Auth\Pages\EditProfile;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Tapp\FilamentGoogleAutocomplete\Forms\Components\GoogleAutocomplete;
@@ -41,14 +37,14 @@ class TeacherProfile extends EditProfile
             ->inlineLabel(false)
             ->components([
                 Section::make('Dados Pessoais')
-                    ->description('Mantenha seus dados atualizados.')
+                    ->description('Mantenha seus dados atualizados!')
                     ->collapsible()
                     ->icon('heroicon-o-user-circle')
                     ->columns(2)
                     ->schema([
                         TextInput::make('teacher.name')
                             ->label('Nome completo')
-                            ->placeholder('Ex.: Lucas Samuel da Silva Cordeiro')
+                            ->placeholder('Ex.: Seu Nome Completo')
                             ->prefixIcon('heroicon-o-user')
                             ->required()
                             ->validationMessages([
