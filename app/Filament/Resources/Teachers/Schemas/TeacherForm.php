@@ -4,7 +4,9 @@ namespace App\Filament\Resources\Teachers\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Carbon;
 use Tapp\FilamentGoogleAutocomplete\Forms\Components\GoogleAutocomplete;
@@ -17,12 +19,21 @@ class TeacherForm
     public static function configure(Schema $schema): Schema
     {
         return $schema->components(components: [
-            TextInput::make('name')
+            TextEntry::make('name')
                 ->label('Nome')
+                ->state(fn($record) => $record->name ?? ''),
+
+            Select::make('subjects')
+                ->relationship('subjects', 'name')
+                ->preload()
+                ->multiple()
                 ->required(),
 
+
+
+
             TextInput::make('email')
-                ->label('Endereço de e-mail')
+                ->label('Endereço de E-mail')
                 ->email()
                 ->required()
                 ->unique(ignoreRecord: true)

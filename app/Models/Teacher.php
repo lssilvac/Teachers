@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Teacher extends Model
@@ -43,4 +44,8 @@ class Teacher extends Model
         return $this->hasMany(SocialMedia::class, 'teacher_id');
     }
 
+    public function subjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Subject::class, 'teachers_x_subjects');
+    }
 }

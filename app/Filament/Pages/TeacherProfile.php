@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Filament\Auth\Pages\EditProfile;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -197,74 +199,74 @@ class TeacherProfile extends EditProfile
                             ]),
                     ]),
 
-//                Section::make('Redes Sociais')
-//                    ->description('Indique redes sociais para seus alunos te encontrarem.')
-//                    ->collapsed()
-//                    ->icon('heroicon-o-at-symbol')
-//                    ->schema([
-//                        Repeater::make('socialMedias')
-//                            ->hiddenLabel()
-//                            ->collapsible()
-//                            ->reorderableWithButtons()
-//                            ->addActionLabel('Adicionar rede social')
-//                            ->relationship()
-//                            ->columns(3)
-//                            ->schema([
-//                                TextInput::make('username')
-//                                    ->label('Usuário')
-//                                    ->placeholder('ex.: seu_usuario')
-//                                    ->prefixIcon('heroicon-o-at-symbol')
-//                                    ->columnSpan(2)
-//                                    ->required()
-//                                    ->validationMessages([
-//                                        'required' => 'Informe o nome de usuário da rede social.',
-//                                    ]),
-//
-//                                Select::make('type')
-//                                    ->label('Plataforma')
-//                                    ->native(false)
-//                                    ->searchable()
-//                                    ->preload()
-//                                    ->required()
-//                                    ->columnSpan(1)
-//                                    ->options([
-//                                        'facebook' => 'Facebook',
-//                                        'twitter' => 'Twitter / X',
-//                                        'tiktok' => 'TikTok',
-//                                        'linkedin' => 'LinkedIn',
-//                                        'instagram' => 'Instagram',
-//                                        'youtube' => 'YouTube',
-//                                    ])
-//                                    ->validationMessages([
-//                                        'required' => 'Selecione a plataforma da rede social.',
-//                                    ]),
-//                            ]),
-//                    ]),
-//
-//                Section::make('Currículo')
-//                    ->description('Exponha aos alunos suas formações.')
-//                    ->collapsed()
-//                    ->icon('heroicon-o-clipboard-document-list')
-//                    ->schema([
-//                        Repeater::make('curriculums')
-//                            ->hiddenLabel()
-//                            ->collapsible()
-//                            ->reorderableWithButtons()
-//                            ->addActionLabel('Adicionar especialização')
-//                            ->relationship()
-//                            ->schema([
-//                                TextInput::make('title')
-//                                    ->label('Especialização')
-//                                    ->placeholder('ex.: Bacharelado em Teologia - UNIV')
-//                                    ->prefixIcon('heroicon-o-academic-cap')
-//                                    ->required()
-//                                    ->validationMessages([
-//                                        'required' => 'Informe o nome da especialização.',
-//                                    ]),
-//                            ])
-//                            ->orderColumn('order')
-//                            ->itemLabel(fn(array $state): ?string => $state['title'] ?? null),
-//                    ]),
+                Section::make('Redes Sociais')
+                    ->description('Indique redes sociais para seus alunos te encontrarem.')
+                    ->collapsed()
+                    ->icon('heroicon-o-at-symbol')
+                    ->schema([
+                        Repeater::make('socialMedias')
+                            ->hiddenLabel()
+                            ->collapsible()
+                            ->reorderableWithButtons()
+                            ->addActionLabel('Adicionar rede social')
+                            ->relationship()
+                            ->columns(3)
+                            ->schema([
+                                TextInput::make('username')
+                                    ->label('Usuário')
+                                    ->placeholder('ex.: seu_usuario')
+                                    ->prefixIcon('heroicon-o-at-symbol')
+                                    ->columnSpan(2)
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Informe o nome de usuário da rede social.',
+                                    ]),
+
+                                Select::make('type')
+                                    ->label('Plataforma')
+                                    ->native(false)
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->columnSpan(1)
+                                    ->options([
+                                        'facebook' => 'Facebook',
+                                        'twitter' => 'Twitter / X',
+                                        'tiktok' => 'TikTok',
+                                        'linkedin' => 'LinkedIn',
+                                        'instagram' => 'Instagram',
+                                        'youtube' => 'YouTube',
+                                    ])
+                                    ->validationMessages([
+                                        'required' => 'Selecione a plataforma da rede social.',
+                                    ]),
+                            ]),
+                    ]),
+
+                Section::make('Currículo')
+                    ->description('Exponha aos alunos suas formações.')
+                    ->collapsed()
+                    ->icon('heroicon-o-clipboard-document-list')
+                    ->schema([
+                        Repeater::make('curriculums')
+                            ->hiddenLabel()
+                            ->collapsible()
+                            ->reorderableWithButtons()
+                            ->addActionLabel('Adicionar especialização')
+                            ->relationship()
+                            ->schema([
+                                TextInput::make('title')
+                                    ->label('Especialização')
+                                    ->placeholder('ex.: Bacharelado em Teologia - UNIV')
+                                    ->prefixIcon('heroicon-o-academic-cap')
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Informe o nome da especialização.',
+                                    ]),
+                            ])
+                            ->orderColumn('order')
+                            ->itemLabel(fn(array $state): ?string => $state['title'] ?? null),
+                    ]),
             ]);
     }
 }

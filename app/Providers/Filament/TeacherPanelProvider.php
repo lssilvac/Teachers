@@ -20,7 +20,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class PainelPanelProvider extends PanelProvider
+class TeacherPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -28,7 +28,7 @@ class PainelPanelProvider extends PanelProvider
             // Identidade & rota base
             ->default()
             ->id('painel')
-            ->path(' ')
+            ->path('painel')
 
             // Auth & verificação
             ->login()
@@ -52,13 +52,13 @@ class PainelPanelProvider extends PanelProvider
 
             // Páginas & widgets básicos
             ->pages([
-                Dashboard::class, // ou sua Dashboard custom (recomendado, ver opção B)
+                Dashboard::class,
             ])
             ->widgets([
                 AccountWidget::class,
                 // Removi o FilamentInfoWidget para limpar o dashboard
             ])
-            ->profile(TeacherProfile::class) // sempre disponível
+            ->profile(TeacherProfile::class, false)
 
             // Middlewares globais do painel
             ->middleware([
@@ -81,5 +81,6 @@ class PainelPanelProvider extends PanelProvider
 
             // UX
             ->unsavedChangesAlerts();
+
     }
 }
