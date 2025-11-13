@@ -62,13 +62,13 @@ class ClassModelForm
                     CheckboxList::make('weekday')
                         ->label('Dias da Semana')
                         ->options([
-                            'seg' => 'Segunda',
-                            'ter' => 'Terça',
-                            'qua' => 'Quarta',
-                            'qui' => 'Quinta',
-                            'sex' => 'Sexta',
-                            'sab' => 'Sábado',
-                            'dom' => 'Domingo',
+                            1 => 'Segunda',
+                            2 => 'Terça',
+                            3 => 'Quarta',
+                            4 => 'Quinta',
+                            5 => 'Sexta',
+                            6 => 'Sábado',
+                            0 => 'Domingo',
                         ])
                         ->columns(4)
                         ->columnSpanFull()

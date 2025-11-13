@@ -44,6 +44,11 @@ class ClassModel extends Model
         return $this->belongsTo(ClassType::class);
     }
 
+    public function classModel(): BelongsTo
+    {
+        return $this->belongsTo(ClassModel::class);
+    }
+
     public function schoolYears(): HasMany
     {
         return $this->hasMany(SchoolYear::class, 'class_id');

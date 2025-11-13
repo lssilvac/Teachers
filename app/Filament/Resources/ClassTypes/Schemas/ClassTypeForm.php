@@ -52,4 +52,8 @@ class ClassTypeForm
                     ]),
             ]);
     }
+
+    public static function getForm()
+    {
+    }
 }
