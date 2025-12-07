@@ -18,11 +18,11 @@ use UnitEnum;
 
 class TeacherResource extends Resource
 {
-    protected static ?string $navigationLabel                 = 'Professores';
-    protected static ?string $label                           = 'Professor';
-    protected static string | UnitEnum | null $navigationGroup = 'Acadêmico';
-    protected static ?string $slug                            = 'professores';
-    protected static ?string $pluralLabel                     = 'Professores';
+    protected static ?string $navigationLabel = 'Professores';
+    protected static ?string $label = 'Professor';
+    protected static string|UnitEnum|null $navigationGroup = 'Acadêmico';
+    protected static ?string $slug = 'professores';
+    protected static ?string $pluralLabel = 'Professores';
     protected static ?string $model = Teacher::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::AcademicCap;
@@ -46,11 +46,11 @@ class TeacherResource extends Resource
         ];
     }
 
-    public static function canAccess(): bool {
+    public static function canAccess(): bool
+    {
         $user = Auth::user();
         return data_get($user, 'teacher.birth_date', false);
     }
-
 
     public static function getPages(): array
     {

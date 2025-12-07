@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invite extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'teacher_id',
-        'school_year_id',
+        'subject_id',
         'status',
         'canceled_by',
         'reason',
@@ -24,13 +28,18 @@ class Invite extends Model
         return $this->belongsTo(Teacher::class);
     }
 
-    public function schoolYear(): BelongsTo
+
+    public function subject(): BelongsTo
     {
-        return $this->belongsTo(SchoolYear::class);
+        return $this->belongsTo(Subject::class);
     }
 
     public function canceledBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'canceled_by');
+    }
+
+    public function dates(): HasMany {
+        return $this->hasMany(InviteDate::class);
     }
 }

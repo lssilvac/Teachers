@@ -42,10 +42,10 @@ class TeachersMap extends WorldMapWidget
             ->toArray();
 
     }
-    public function color(): array
-    {
-        return [165, 21, 24];
-    }
+//    public function color(): array
+//    {
+//        return [165, 21, 24];
+//    }
 
 
 

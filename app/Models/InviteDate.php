@@ -9,14 +9,19 @@ class InviteDate extends Model
 {
 
     protected $fillable = [
-        'teacher_id',
-        'tag',
-        'date'
+        'invite_id',
+        'school_year_id'
     ];
 
-    public function teacher(): BelongsTo
+    public function schoolYear(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(SchoolYear::class);
     }
+
+    public function invite(): BelongsTo
+    {
+        return $this->belongsTo(Invite::class);
+    }
+
 
 }

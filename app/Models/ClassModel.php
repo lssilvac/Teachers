@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ClassModel extends Model
 {
+use HasFactory;
 
     protected $table = 'classes';
 
@@ -42,11 +44,6 @@ class ClassModel extends Model
     public function classType(): BelongsTo
     {
         return $this->belongsTo(ClassType::class);
-    }
-
-    public function classModel(): BelongsTo
-    {
-        return $this->belongsTo(ClassModel::class);
     }
 
     public function schoolYears(): HasMany

@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\TeacherProfile;
+use App\Livewire\TeacherCalendar;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -56,6 +57,7 @@ class TeacherPanelProvider extends PanelProvider
             ])
             ->widgets([
                 AccountWidget::class,
+                TeacherCalendar::class
                 // Removi o FilamentInfoWidget para limpar o dashboard
             ])
             ->profile(TeacherProfile::class, false)

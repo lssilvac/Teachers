@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // Turmas
@@ -40,23 +41,9 @@ return new class extends Migration {
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
-        // Ano letivo
-        Schema::create('school_years', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('class_id')
-                ->nullable()
-                ->constrained('classes')
-                ->nullOnDelete();
-
-            $table->foreignId('subject_id')
-                ->nullable()
-                ->constrained('subjects')
-                ->nullOnDelete();
-
-            $table->timestamps();
-        });
 
         // Convites
         Schema::create('invites', function (Blueprint $table) {
@@ -66,10 +53,11 @@ return new class extends Migration {
                 ->constrained('teachers')
                 ->nullOnDelete();
 
-            $table->foreignId('school_year_id')
+            $table->foreignId('subject_id')
                 ->nullable()
-                ->constrained('school_years')
+                ->constrained('subjects')
                 ->nullOnDelete();
+
 
             $table->enum('status', ['pending', 'accepted', 'rejected', 'canceled'])
                 ->default('pending');
@@ -82,6 +70,31 @@ return new class extends Migration {
             $table->text('reason')->nullable();
 
             $table->timestamps();
+
+            $table->softDeletes();
+        });
+
+        // Ano letivo
+        Schema::create('school_years', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('class_id')
+                ->nullable()
+                ->constrained('classes')
+                ->nullOnDelete();
+
+            $table->foreignId('invite_id')
+                ->nullable()
+                ->constrained('invites')
+                ->nullOnDelete();
+
+            $table->json('dates')
+                ->nullable();
+
+            $table->unsignedInteger('sort_order')
+                ->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Datas dos convites
@@ -92,21 +105,13 @@ return new class extends Migration {
                 ->constrained('invites')
                 ->nullOnDelete();
 
-            $table->date('date')->nullable();
-            $table->timestamps();
-        });
-
-        // Bloqueios de calendário
-        Schema::create('calendar_locks', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('teacher_id')
+            $table->foreignId('school_year_id')
                 ->nullable()
-                ->constrained('teachers')
+                ->constrained('school_years')
                 ->nullOnDelete();
 
-            $table->string('tag')->nullable();
-            $table->date('date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -115,10 +120,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('calendar_locks');
         Schema::dropIfExists('invite_dates');
-        Schema::dropIfExists('invites');
         Schema::dropIfExists('school_years');
+        Schema::dropIfExists('invites');
         Schema::dropIfExists('classes');
         Schema::dropIfExists('schools');
     }
