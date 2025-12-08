@@ -16,7 +16,8 @@ class Invite extends Model
         'subject_id',
         'status',
         'canceled_by',
-        'reason',
+        'cancel_reason',
+        'cancel_reason_notes',
     ];
 
     protected $casts = [
