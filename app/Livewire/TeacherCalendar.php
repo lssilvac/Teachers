@@ -9,7 +9,6 @@ use Blade;
 use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\TextEntry;
@@ -321,7 +320,7 @@ class TeacherCalendar extends CalendarWidget
                                             $set('end_date', $dates->last());
                                         }),
 
-                                    Placeholder::make('module_dates_preview')
+                                    TextEntry::make('module_dates_preview')
                                         ->label('Datas deste módulo')
                                         ->content(function (callable $get) {
                                             $schoolYearId = $get('choosed_id');
